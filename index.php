@@ -15,7 +15,7 @@ foreach ($events as $event){
 }
 
 //テキストを送信。引数はLINEBot、返信先、テキスト
-function replyTextMessage($bot, $replyToken, text){
+function replyTextMessage($bot, $replyToken, $text){
 	//返信を行いレスポンスを取得
 	//TextMessageBuilderの引数はテキスト
 	$responce = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
