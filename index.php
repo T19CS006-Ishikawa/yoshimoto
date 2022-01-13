@@ -12,7 +12,7 @@ foreach ($events as $event){
 	//テキストを送信
 //	$bot->replyText($event->getReplyToken(), 'TextMessage');
 //	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
-	replyImageMessage($bot, $event->getReplyToken(),'https://'.$_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
+	replyImageMessage($bot, $event->getReplyToken(),'https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
 }
 
 //テキストを送信。引数はLINEBot、返信先、テキスト
