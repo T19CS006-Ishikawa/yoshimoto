@@ -11,7 +11,11 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 foreach ($events as $event){
 	//テキストを送信
 //	$bot->replyText($event->getReplyToken(), 'TextMessage');
-	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
+//	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
+	replyImageMessage($bot, $event->getReplyToken(), 'hhtps://' .
+	$_SERVER['HTTP_HOST'].
+	'imgs/orginal.jpg','https://' . $_SERVER['HTTP_HOST] . 
+	'/imgs/pewview.jpg');
 }
 
 //テキストを送信。引数はLINEBot、返信先、テキスト
