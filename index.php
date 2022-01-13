@@ -12,9 +12,9 @@ foreach ($events as $event){
 	//テキストを送信
 //	$bot->replyText($event->getReplyToken(), 'TextMessage');
 //	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
-	replyImageMessage($bot, $event->getReplyToken(), 'hhtps://' .
-	$_SERVER['HTTP_HOST'].
-	'imgs/orginal.jpg','https://' . $_SERVER['HTTP_HOST] . 
+	replyImageMessage($bot, $event->getReplyToken(), 'https://' .
+	$_SERVER['HTTP_HOST'] .
+	'/imgs/orginal.jpg','https://' . $_SERVER['HTTP_HOST] . 
 	'/imgs/pewview.jpg');
 }
 
