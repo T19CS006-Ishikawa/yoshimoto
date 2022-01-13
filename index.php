@@ -11,8 +11,8 @@ $events = $bot->parseEventRequest(file_get_contents('php://input'), $signature);
 foreach ($events as $event){
 	//テキストを送信
 //	$bot->replyText($event->getReplyToken(), 'TextMessage');
-	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
-//	replyImageMessage($bot, $event->getReplyToken(), 'https://' .$_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
+//	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
+	replyImageMessage($bot, $event->getReplyToken(),'https://'.$_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
 }
 
 //テキストを送信。引数はLINEBot、返信先、テキスト
@@ -33,7 +33,7 @@ function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl
 	$responce = $bot->replyMessage($replyToken, new \LINE\LINEbot\MessageBuilder\ImageMessageBuilder($originalImageUrl,$previewImageUrl));
 
 	if(!$responce->isSucceeded()){
-	error_log('Failed!'. $responce->getHTTPStatus . ' ' . $responce->getRawBody());
+	error_log('Failed!'. $responce->getHTTPStatus .' '. $responce->getRawBody());
 	}
 }
 
