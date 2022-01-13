@@ -22,7 +22,7 @@ function replyTextMessage($bot, $replyToken, text){
 
 	//ƒŒƒXƒ|ƒ“ƒX‚ªˆÙí‚Èê‡
 	if(!$responce->isSucceeded()){
-	error_log('Failed!', $responce->getHTTPStatus .' '. $responce->getRawBody());
+	error_log('Failed!'. $responce->getHTTPStatus .' '. $responce->getRawBody());
 	}
 }
 
