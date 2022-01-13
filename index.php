@@ -18,7 +18,7 @@ foreach ($events as $event){
 function replyTextMessage($bot, $replyToken, text){
 	//返信を行いレスポンスを取得
 	//TextMessageBuilderの引数はテキスト
-	$responce = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBulder\TextMessageBuilder($text));
+	$responce = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($text));
 
 	//レスポンスが異常な場合
 	if(!$responce->isSucceeded()){
