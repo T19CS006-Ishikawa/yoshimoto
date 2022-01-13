@@ -15,7 +15,7 @@ foreach ($events as $event){
 	replyImageMessage($bot, $event->getReplyToken(), 'https://' .
 	$_SERVER['HTTP_HOST'] .
 	'/imgs/orginal.jpg','https://' . $_SERVER['HTTP_HOST'] . 
-	'/imgs/pewview.jpg');
+	'/imgs/preview.jpg');
 }
 
 //テキストを送信。引数はLINEBot、返信先、テキスト
