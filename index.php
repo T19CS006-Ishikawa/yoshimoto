@@ -29,7 +29,7 @@ function replyTextMessage($bot, $replyToken, $text){
 //画像を返信。引数はLINE Bot、返信先、画像URL、サムネイルURL
 function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
 	//ImageMessageBuilderの引数は画像url,サムネイルurl
-	$responce = $bot->replyMesage($replyToken, new \LINE\LINEbot\MessageBuilder\ImageMessageBuilder{originalImageUrl,$previewImageUrl));
+	$responce = $bot->replyMessage($replyToken, new \LINE\LINEbot\MessageBuilder\ImageMessageBuilder(originalImageUrl,$previewImageUrl));
 	if(!$responce->isSucceeded()){
 	error_log('Failed!'. $responce->getHTTPStatus . ' ' . $responce->getRawBody());
 	}
