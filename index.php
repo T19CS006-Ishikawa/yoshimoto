@@ -14,7 +14,7 @@ foreach ($events as $event){
 //	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
 	replyImageMessage($bot, $event->getReplyToken(), 'https://' .
 	$_SERVER['HTTP_HOST'] .
-	'/imgs/orginal.jpg','https://' . $_SERVER['HTTP_HOST] . 
+	'/imgs/orginal.jpg','https://' . $_SERVER['HTTP_HOST'] . 
 	'/imgs/pewview.jpg');
 }
 
