@@ -21,7 +21,24 @@ foreach ($events as $event){
     new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg', 'https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg'),
     new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1)
   );
-*/
+*/  replyButtonsTemplate($bot,
+    $event->getReplyToken(),
+    'お天気お知らせ - 今日は天気予報は晴れです',
+    'https://' . $_SERVER['HTTP_HOST'] . '/imgs/template.jpg',
+    'お天気お知らせ',
+    '今日は天気予報は晴れです',
+    // タップ時、テキストをユーザーに発言させるアクション
+    new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder (
+      '明日の天気', 'tomorrow'),
+    // タップ時、テキストをBotに送信するアクション(トークには表示されない)
+    new LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder (
+      '週末の天気', 'weekend'),
+    // タップ時、URLを開くアクション
+    new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder (
+      'Webで見る', 'http://google.jp')
+  );
+}
+
 //テキストを送信。引数はLINEBot、返信先、テキスト
 function replyTextMessage($bot, $replyToken, $text){
 	//返信を行いレスポンスを取得
@@ -33,8 +50,6 @@ function replyTextMessage($bot, $replyToken, $text){
 	error_log('Failed!'. $responce->getHTTPStatus .' '. $responce->getRawBody());
 	}
 }
-}
-
 
 //画像を返信。引数はLINE Bot、返信先、画像URL、サムネイルURL
 function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
@@ -69,8 +84,7 @@ function replyMultiMessage($bot, $replyToken, ...$msgs) {
   }
 }
 
-// Buttonsテンプレートを返信。引数はLINEBot、返信先、代替テキスト、
-// 画像URL、タイトル、本文、アクション(可変長引数)
+// Buttonsテンプレートを返信。引数はLINEBot、返信先、代替テキスト、画像URL、タイトル、本文、アクション(可変長引数)
 function replyButtonsTemplate($bot, $replyToken, $alternativeText, $imageUrl, $title, $text, ...$actions) {
   // アクションを格納する配列
   $actionArray = array();
