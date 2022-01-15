@@ -21,21 +21,14 @@ foreach ($events as $event){
     new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg', 'https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg'),
     new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1)
   );
-*/  replyButtonsTemplate($bot,
-    $event->getReplyToken(),
-    'お天気お知らせ - 今日は天気予報は晴れです',
-    'https://' . $_SERVER['HTTP_HOST'] . '/imgs/template.jpg',
-    'お天気お知らせ',
+*/  replyButtonsTemplate($bot,$event->getReplyToken(),'お天気お知らせ - 今日は天気予報は晴れです','https://' . $_SERVER['HTTP_HOST'] . '/imgs/template.jpg','お天気お知らせ',
     '今日は天気予報は晴れです',
     // タップ時、テキストをユーザーに発言させるアクション
-    new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder (
-      '明日の天気', 'tomorrow'),
+    new LINE\LINEBot\TemplateActionBuilder\MessageTemplateActionBuilder ('明日の天気', 'tomorrow'),
     // タップ時、テキストをBotに送信するアクション(トークには表示されない)
-    new LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder (
-      '週末の天気', 'weekend'),
+    new LINE\LINEBot\TemplateActionBuilder\PostbackTemplateActionBuilder ('週末の天気', 'weekend'),
     // タップ時、URLを開くアクション
-    new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder (
-      'Webで見る', 'http://google.jp')
+    new LINE\LINEBot\TemplateActionBuilder\UriTemplateActionBuilder ('Webで見る', 'http://google.jp')
   );
 }
 
