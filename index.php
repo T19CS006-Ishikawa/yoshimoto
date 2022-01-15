@@ -14,7 +14,14 @@ foreach ($events as $event){
 //	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
 //	replyImageMessage($bot, $event->getReplyToken(),'https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
 	// スタンプを返信
-	replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
+//	replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
+  // 複数のメッセージをまとめて返信
+  replyMultiMessage($bot, $event->getReplyToken(),
+    new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('TextMessage'),
+    new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg', 'https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg'),
+    new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1)
+  );
+
 }
 
 //テキストを送信。引数はLINEBot、返信先、テキスト
@@ -47,5 +54,20 @@ function replyStickerMessage($bot, $replyToken, $packageId, $stickerId) {
 		error_log('Failed!'. $response->getHTTPStatus . ' ' . $response->getRawBody());
 	}
 }
+
+// 複数のメッセージをまとめて返信。引数はLINEBot、返信先、メッセージ(可変長引数)
+function replyMultiMessage($bot, $replyToken, ...$msgs) {
+  // MultiMessageBuilderをインスタンス化
+  $builder = new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder();
+  // ビルダーにメッセージを全て追加
+  foreach($msgs as $value) {
+    $builder->add($value);
+  }
+  $response = $bot->replyMessage($replyToken, $builder);
+  if (!$response->isSucceeded()) {
+    error_log('Failed!'. $response->getHTTPStatus . ' ' . $response->getRawBody());
+  }
+}
+
 
 ?>
