@@ -45,7 +45,7 @@ function replyLocationMessage($bot, $replyToken, $title, $address, $lat, $lon) {
   // LocationMessageBuilderの引数はダイアログのタイトル、住所、緯度、経度
 	$response = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\LocationMessageBuilder($title, $address, $lat, $lon));
 	if (!$response->isSucceeded()) {
-		error_log('Failed!'. $response->getHTTPStatus . ' ' . $response->getRawBody());
+	error_log('Failed!'. $responce->getHTTPStatus .' '. $responce->getRawBody());
 	}
 }
 
