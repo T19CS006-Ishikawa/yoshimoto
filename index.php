@@ -16,14 +16,12 @@ foreach ($events as $event){
 	// スタンプを返信
 //	replyStickerMessage($bot, $event->getReplyToken(), 1, 1);
   // 複数のメッセージをまとめて返信
-  replyMultiMessage($bot, $event->getReplyToken(),
+ /* replyMultiMessage($bot, $event->getReplyToken(),
     new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('TextMessage'),
     new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder('https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg', 'https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg'),
     new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 1)
   );
-
-}
-
+*/
 //テキストを送信。引数はLINEBot、返信先、テキスト
 function replyTextMessage($bot, $replyToken, $text){
 	//返信を行いレスポンスを取得
@@ -35,6 +33,8 @@ function replyTextMessage($bot, $replyToken, $text){
 	error_log('Failed!'. $responce->getHTTPStatus .' '. $responce->getRawBody());
 	}
 }
+}
+
 
 //画像を返信。引数はLINE Bot、返信先、画像URL、サムネイルURL
 function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
@@ -69,5 +69,26 @@ function replyMultiMessage($bot, $replyToken, ...$msgs) {
   }
 }
 
+// Buttonsテンプレートを返信。引数はLINEBot、返信先、代替テキスト、
+// 画像URL、タイトル、本文、アクション(可変長引数)
+function replyButtonsTemplate($bot, $replyToken, $alternativeText, $imageUrl, $title, $text, ...$actions) {
+  // アクションを格納する配列
+  $actionArray = array();
+  // アクションを全て追加
+  foreach($actions as $value) {
+    array_push($actionArray, $value);
+  }
+  // TemplateMessageBuilderの引数は代替テキスト、ButtonTemplateBuilder
+  $builder = new \LINE\LINEBot\MessageBuilder\TemplateMessageBuilder(
+    $alternativeText,
+    // ButtonTemplateBuilderの引数はタイトル、本文、
+    // 画像URL、アクションの配列
+    new \LINE\LINEBot\MessageBuilder\TemplateBuilder\ButtonTemplateBuilder ($title, $text, $imageUrl, $actionArray)
+  );
+  $response = $bot->replyMessage($replyToken, $builder);
+  if (!$response->isSucceeded()) {
+    error_log('Failed!'. $response->getHTTPStatus . ' ' . $response->getRawBody());
+  }
+}
 
 ?>
