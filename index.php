@@ -12,9 +12,9 @@ foreach ($events as $event){
 	//ƒeƒLƒXƒg‚ð‘—M
 //	$bot->replyText($event->getReplyToken(), 'TextMessage');
 //	replyTextMessage($bot, $event->getReplyToken(),'TextMessage');
-//	replyImageMessage($bot, $event->getReplyToken(),'https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
+	replyImageMessage($bot, $event->getReplyToken(),'https://' . $_SERVER['HTTP_HOST'] . '/imgs/original.jpg','https://' . $_SERVER['HTTP_HOST'] . '/imgs/preview.jpg');
 	//ˆÊ’uî•ñ‚ð•ÔM
-	replyLocationMessage($bot, $event->getReplyToken(), 'LINE', '“Œ‹ž“sa’J‹æa’J2-21-1 ƒqƒJƒŠƒG27ŠK', 35.659025, 139.703473);
+//	replyLocationMessage($bot, $event->getReplyToken(), 'LINE', '“Œ‹ž“sa’J‹æa’J2-21-1 ƒqƒJƒŠƒG27ŠK', 35.659025, 139.703473);
 }
 
 //ƒeƒLƒXƒg‚ð‘—MBˆø”‚ÍLINEBotA•ÔMæAƒeƒLƒXƒg
@@ -33,7 +33,6 @@ function replyTextMessage($bot, $replyToken, $text){
 function replyImageMessage($bot, $replyToken, $originalImageUrl,$previewImageUrl){
 	//ImageMessageBuilder‚Ìˆø”‚Í‰æ‘œurl,ƒTƒ€ƒlƒCƒ‹url
 	$responce = $bot->replyMessage($replyToken, new \LINE\LINEBot\MessageBuilder\ImageMessageBuilder($originalImageUrl,$previewImageUrl));
-
 	if(!$responce->isSucceeded()){
 	error_log('Failed!'. $responce->getHTTPStatus .' '. $responce->getRawBody());
 	}
