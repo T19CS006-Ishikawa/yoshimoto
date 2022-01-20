@@ -26,6 +26,7 @@ try {
 
 // 配列に格納された各イベントをループで処理
 foreach ($events as $event) {
+　 $location = $event->getText();
   // MessageEventクラスのインスタンスでなければ処理をスキップ
   if (!($event instanceof \LINE\LINEBot\Event\MessageEvent)) {
     error_log('Non message event has come');
@@ -39,14 +40,16 @@ foreach ($events as $event) {
   // オウム返し
  // $bot->replyText($event->getReplyToken(), $event->getText());
 
-    $location = $event->getText();
-
+    error_log($event_log($event->getUserID());
+	
+/* 
+      
     if(('記録' == $location){
 　　　replyTextMessage($bot, $event->getReplyToken(),'記録を開始します。');
     else{
       replyTextMessage($bot, $event->getReplyToken(),'入力が不明です。記録開始する場合、記録と送信してください。');	
 }
-}
+}*/
 
 }
 
