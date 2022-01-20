@@ -40,7 +40,7 @@ foreach ($events as $event) {
   // ƒIƒEƒ€•Ô‚µ
  // $bot->replyText($event->getReplyToken(), $event->getText());
 
-    error_log($event->getUserID());
+ //   error_log($event->getUserID());
 	
 /* 
       
